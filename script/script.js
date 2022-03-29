@@ -1,6 +1,29 @@
-let name1 = 'Hannah';
-let name2 = 'David';
-console.log('Hello %s, hello %s!', name1, name2);
-let num1 = 5;
-let num2 = 7;
-console.log('Num 1 is %s, num 2 is %s, and num 1 add to num 2 is %s.', num1, num2, num1+num2)
+const modalWindow = document.querySelector('.modal');
+const buttons = document.querySelectorAll('.modal__button');
+const modalClose = document.querySelector('.modal__close');
+const body = document.querySelector('body');
+
+buttons.forEach(item => {
+    item.addEventListener('click', () => {
+        modalWindow.style.display = 'flex';
+        body.classList.add('noscrol');
+        // modalWindow.classList.add('scroll');
+    });
+});
+
+// Close modalWindow by click outside it borders.
+modalWindow.addEventListener('click', (element) => {
+    const isModal = element.target.closest('.modal__inner');
+
+    if (!isModal) {
+        modalWindow.style.display = 'none';
+        body.classList.remove('noscrol');
+        // modalWindow.classList.remove('scroll');
+    }
+});
+
+modalClose.addEventListener('click', () => {
+    modalWindow.style.display = 'none';
+    body.classList.remove('noscrol');
+    // modalWindow.classList.remove('scroll');
+});
